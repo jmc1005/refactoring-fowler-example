@@ -15,7 +15,7 @@ package ubu.gii.dass.refactoring;
 public class Movie {
 	private String _title;
 	private int _priceCode;
-	private MovieType _movieType;
+	MovieType _movieType;
 
 	public Movie(String title, int priceCode) {
 		setTitle(title);
@@ -53,13 +53,5 @@ public class Movie {
 
 	public double getCharge(Rental rental) {
 		return this._movieType.getCharge(rental);
-	}
-
-	int getFrecuentRenterPoint(Rental rental) {
-		int result = 1;
-		// add bonus for a two day new release rental
-		if ((this.getPriceCode() == MovieType.NEW_RELEASE) && rental.getDaysRented() > 1)
-			result++;
-		return result;
 	}
 }

@@ -30,24 +30,40 @@ public class Customer {
 		return _name;
 	};
 
-	public String statement() {
+	public StringBuilder getStatement(boolean isHtmlStatement) {
 		double totalAmount = 0;
 		int frequentRenterPoints = 0;
 		Iterator<Rental> rentals = _rentals.iterator();
-		String result = "Rental Record for " + getName() + "\n";
+		StringBuilder sb = new StringBuilder();
+		if(isHtmlStatement)
+			sb.append("<h1>");	
+		sb.append("Rental Record for " + getName() + "\n");
+		if(isHtmlStatement)
+			sb.append("</h1><p>");
 		while (rentals.hasNext()) {
 			double thisAmount = 0;
 			Rental rental = rentals.next();
 			thisAmount = rental.get_movie().getCharge(rental);
 
-			frequentRenterPoints += rental.get_movie().getFrecuentRenterPoint(rental);
+			frequentRenterPoints += rental.get_movie()._movieType.getFrecuentRenterPoint(rental);
 			// show figures for this rental
-			result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
+			sb.append("\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n");
 			totalAmount += thisAmount;
 		}
 		// add footer lines
-		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-		result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
-		return result;
+		sb.append("Amount owed is " + totalAmount + "\n");
+		sb.append("You earned " + frequentRenterPoints + " frequent renter points");
+		if(isHtmlStatement)
+			sb.append("</p>");
+		
+		return sb;
+	}
+	
+	public String statement() {
+		return getStatement(false).toString();
+	}
+	
+	public String htmlStatement() {		
+		return getStatement(true).toString().replace("\n", "<br/>").replace("\t", "&nbsp");
 	}
 }

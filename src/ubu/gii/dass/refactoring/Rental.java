@@ -15,7 +15,11 @@ public class Rental {
 	private int _daysRented;
 
 	public Rental(Movie movie, int daysRented) {
-		_movie = movie;
+		set_movie(movie);
+		setDaysRented(daysRented);
+	}
+
+	private void setDaysRented(int daysRented) {
 		_daysRented = daysRented;
 	}
 

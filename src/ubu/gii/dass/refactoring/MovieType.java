@@ -17,5 +17,13 @@ public abstract class MovieType {
 	}
 
 	public abstract double getCharge(Rental rental);
+
+	int getFrecuentRenterPoint(Rental rental) {
+		int result = 1;
+		// add bonus for a two day new release rental
+		if ((rental.get_movie().getPriceCode() == MovieType.NEW_RELEASE) && rental.getDaysRented() > 1)
+			result++;
+		return result;
+	}
 	
 }

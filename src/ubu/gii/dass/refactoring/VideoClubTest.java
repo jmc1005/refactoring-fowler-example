@@ -18,7 +18,10 @@ import org.junit.Test;
  * 
  */
 public class VideoClubTest {
-	protected Movie m0, m11, m12, m2;
+	protected Movie m0;
+	protected Movie m11;
+	protected Movie m12;
+	protected Movie m2;
 	protected Customer c1;
 
 	@Before
@@ -51,6 +54,28 @@ public class VideoClubTest {
 		String salidaEsperada = new String(
 				"Rental Record for Manuel\n" + "\tSky Captain\t15.0\n" + "\tAccion Mutante\t2.0\n"
 						+ "\tHermano Oso\t12.0\n" + "Amount owed is 29.0\n" + "You earned 4 frequent renter points");
+
+		assertTrue("Calcula mal el alquiler", salidaEsperada.equals(salida));
+
+	}
+
+	@Test
+	public void testAlquilerHtml() {
+
+		Rental r1 = new Rental(m11, 5);
+		Rental r2 = new Rental(m0, 1);
+		Rental r3 = new Rental(m2, 10);
+
+		c1.addRental(r1);
+		c1.addRental(r2);
+		c1.addRental(r3);
+
+		String salida = c1.htmlStatement();
+
+		String salidaEsperada = new String(
+				"<h1>Rental Record for Manuel<br/></h1><p>&nbspSky Captain&nbsp15.0<br/>&nbspAccion Mutante"
+						+ "&nbsp2.0<br/>&nbspHermano Oso&nbsp12.0<br/>Amount owed is 29.0<br/>You earned 4 frequent "
+						+ "renter points</p>");
 
 		assertTrue("Calcula mal el alquiler", salidaEsperada.equals(salida));
 
