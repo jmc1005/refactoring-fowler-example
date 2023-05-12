@@ -4,6 +4,8 @@ refactoring-fowler-example
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d489f9796e6948a28d3f1b6bae8cca41)](https://app.codacy.com/gh/jmc1005/refactoring-fowler-example/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
+[![codecov](https://codecov.io/gh/jmc1005/refactoring-fowler-example/branch/master/graph/badge.svg?token=J2OC4O3Z77)](https://codecov.io/gh/jmc1005/refactoring-fowler-example)
+
 Java code example to teach basic refactoring  concepts.
 
 Travis CI is  applied to continuous integration  and Codacy to continuous quality assurance.
