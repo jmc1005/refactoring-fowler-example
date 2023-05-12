@@ -1,7 +1,8 @@
 refactoring-fowler-example
 ==========================
 [![Build Status](https://travis-ci.org/clopezno/refactoring-fowler-example.svg?branch=master)](https://travis-ci.org/clopezno/refactoring-fowler-example)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/82d8b811489b4a58ad3bc2e79f32aede)](https://app.codacy.com/app/clopezno/refactoring-fowler-example?utm_source=github.com&utm_medium=referral&utm_content=clopezno/refactoring-fowler-example&utm_campaign=Badge_Grade_Dashboard)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d489f9796e6948a28d3f1b6bae8cca41)](https://app.codacy.com/gh/jmc1005/refactoring-fowler-example/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 Java code example to teach basic refactoring  concepts.
 
