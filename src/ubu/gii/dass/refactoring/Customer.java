@@ -38,9 +38,9 @@ public class Customer {
 		while (rentals.hasNext()) {
 			double thisAmount = 0;
 			Rental rental = rentals.next();
-			thisAmount = rental.get_movie().getCharge(rental, thisAmount);
+			thisAmount = rental.get_movie().getCharge(rental);
 
-			frequentRenterPoints = rental.get_movie().getFrequentPoints(rental, frequentRenterPoints);
+			frequentRenterPoints += rental.get_movie().getFrecuentRenterPoints(rental);
 			// show figures for this rental
 			result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
 			totalAmount += thisAmount;

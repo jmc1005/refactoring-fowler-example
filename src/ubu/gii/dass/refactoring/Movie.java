@@ -1,4 +1,5 @@
 package ubu.gii.dass.refactoring;
+
 /**
  * Tema Refactorizaciones
  * 
@@ -12,57 +13,56 @@ package ubu.gii.dass.refactoring;
  */
 
 public class Movie {
-	
 	private String _title;
 	private int _priceCode;
 	private MovieType _movieType;
 
 	public Movie(String title, int priceCode) {
+		setTitle(title);
+		setPriceCode(priceCode);
+	}
+
+	private void setTitle(String title) {
 		_title = title;
-		_priceCode = priceCode;
 	}
 
 	public int getPriceCode() {
 		return _priceCode;
 	}
-
+	
 	public void setPriceCode(int arg) {
 		_priceCode = arg;
+		switch (arg) {
+		case MovieType.CHILDRENS:
+			_movieType = new Children();
+			break;
+		case MovieType.NEW_RELEASE:
+			_movieType = new NewRelease();
+			break;
+		case MovieType.REGULAR:
+			_movieType = new Regular();
+			break;
+		default:
+			_movieType = null;
+		}
 	}
 
 	public String getTitle() {
 		return _title;
 	}
-	
-	
 
-	int getFrequentPoints(Rental rental, int frequentRenterPoints) {
-		// add frequent renter points
-		frequentRenterPoints++;
-		// add bonus for a two day new release rental
-		if ((rental.getMovie().getPriceCode() == MovieType.NEW_RELEASE)
-				&& rental.getDaysRented() > 1)
-			frequentRenterPoints++;
-		return frequentRenterPoints;
+	
+	public int getTypeCode() {
+		return this._movieType.getTypeCode();
 	}
 
-	double getCharge(Rental rental, double thisAmount) {
-		// determine amounts for each line
-		switch (rental.getMovie().getPriceCode()) {
-		case MovieType.REGULAR:
-			thisAmount += 2;
-			if (rental.getDaysRented() > 2)
-				thisAmount += (rental.getDaysRented() - 2) * 1.5;
-			break;
-		case MovieType.NEW_RELEASE:
-			thisAmount += rental.getDaysRented() * 3;
-			break;
-		case MovieType.CHILDRENS:
-			thisAmount += 1.5;
-			if (rental.getDaysRented() > 3)
-				thisAmount += (rental.getDaysRented() - 3) * 1.5;
-			break;
-		}
-		return thisAmount;
+
+	public int getFrecuentRenterPoints(Rental rental) {
+		return _movieType.getFrecuentRenterPoints(rental);
+	}
+
+
+	public double getCharge(Rental rental) {
+		return this._movieType.getCharge(rental);
 	}
 }
