@@ -1,6 +1,6 @@
 package ubu.gii.dass.refactoring;
 
-public class Regular extends MovieType{
+public class Regular extends MovieType {
 
 	@Override
 	public int getTypeCode() {
@@ -9,7 +9,10 @@ public class Regular extends MovieType{
 
 	@Override
 	public double getCharge(Rental rental) {
-		return 0;
+		double result = 2;
+		if (rental.getDaysRented() > 2)
+			result += (rental.getDaysRented() - 2) * 1.5;
+		return result;
 	}
 
 }

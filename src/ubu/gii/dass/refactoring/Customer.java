@@ -38,33 +38,16 @@ public class Customer {
 		while (rentals.hasNext()) {
 			double thisAmount = 0;
 			Rental rental = rentals.next();
-			// determine amounts for each line
-			switch (rental.getMovie().getPriceCode()) {
-			case Movie.REGULAR:
-				thisAmount += 2;
-				if (rental.getDaysRented() > 2)
-					thisAmount += (rental.getDaysRented() - 2) * 1.5;
-				break;
-			case Movie.NEW_RELEASE:
-				thisAmount += rental.getDaysRented() * 3;
-				break;
-			case Movie.CHILDRENS:
-				thisAmount += 1.5;
-				if (rental.getDaysRented() > 3)
-					thisAmount += (rental.getDaysRented() - 3) * 1.5;
-				break;
-			}
-			
+			thisAmount = rental.get_movie().getCharge(rental, thisAmount);
+
 			frequentRenterPoints = rental.get_movie().getFrequentPoints(rental, frequentRenterPoints);
 			// show figures for this rental
-			result += "\t" + rental.getMovie().getTitle() + "\t"
-					+ String.valueOf(thisAmount) + "\n";
+			result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
 			totalAmount += thisAmount;
 		}
 		// add footer lines
 		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-		result += "You earned " + String.valueOf(frequentRenterPoints)
-				+ " frequent renter points";
+		result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
 		return result;
 	}
 }
