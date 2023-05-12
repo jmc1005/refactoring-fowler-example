@@ -29,7 +29,7 @@ public class Movie {
 	public int getPriceCode() {
 		return _priceCode;
 	}
-	
+
 	public void setPriceCode(int arg) {
 		_priceCode = arg;
 		switch (arg) {
@@ -51,18 +51,15 @@ public class Movie {
 		return _title;
 	}
 
-	
-	public int getTypeCode() {
-		return this._movieType.getTypeCode();
-	}
-
-
-	public int getFrecuentRenterPoints(Rental rental) {
-		return _movieType.getFrecuentRenterPoints(rental);
-	}
-
-
 	public double getCharge(Rental rental) {
 		return this._movieType.getCharge(rental);
+	}
+
+	int getFrecuentRenterPoint(Rental rental) {
+		int result = 1;
+		// add bonus for a two day new release rental
+		if ((this.getPriceCode() == MovieType.NEW_RELEASE) && rental.getDaysRented() > 1)
+			result++;
+		return result;
 	}
 }

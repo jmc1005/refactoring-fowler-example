@@ -40,7 +40,7 @@ public class Customer {
 			Rental rental = rentals.next();
 			thisAmount = rental.get_movie().getCharge(rental);
 
-			frequentRenterPoints += rental.get_movie().getFrecuentRenterPoints(rental);
+			frequentRenterPoints += rental.get_movie().getFrecuentRenterPoint(rental);
 			// show figures for this rental
 			result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
 			totalAmount += thisAmount;
