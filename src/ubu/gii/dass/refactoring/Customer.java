@@ -55,7 +55,7 @@ public class Customer {
 				break;
 			}
 			
-			frequentRenterPoints = rental.getFrequentPoints(frequentRenterPoints);
+			frequentRenterPoints = rental.get_movie().getFrequentPoints(rental, frequentRenterPoints);
 			// show figures for this rental
 			result += "\t" + rental.getMovie().getTitle() + "\t"
 					+ String.valueOf(thisAmount) + "\n";
